@@ -39,9 +39,9 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
     }
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 31536000
-    default_ttl            = 31536000
-    max_ttl                = 31536000
+    min_ttl                = 0
+    default_ttl            = 0
+    max_ttl                = 0
     compress               = true
   }
 
@@ -52,7 +52,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.cert_validation.certificate_arn
+    acm_certificate_arn      = "arn:aws:acm:us-east-1:925331554557:certificate/f232ca2f-b6cd-4d5c-b547-e3879f70fb1f" 
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
@@ -95,8 +95,8 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
 
     viewer_protocol_policy = "allow-all"
     min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
+    default_ttl            = 0
+    max_ttl                = 0
   }
 
   restrictions {
@@ -106,7 +106,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.cert_validation.certificate_arn
+    acm_certificate_arn      = "arn:aws:acm:us-east-1:925331554557:certificate/f232ca2f-b6cd-4d5c-b547-e3879f70fb1f"
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
